@@ -33,7 +33,7 @@ const LoginPage = () => {
         <button className="login-btn">Log in</button>
 
         <div className="bottom-links">
-          <p>Don't have an account? <a href="#">Sign up</a></p>
+          <p>Don't have an account? <a href="/SignUp">Sign up</a></p>
           <p>Are you a Seller? <a href="#">Log in as a Seller</a></p>
         </div>
       </div>
