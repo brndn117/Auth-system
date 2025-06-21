@@ -18,9 +18,9 @@ const BuyingSection = () => {
             <option>BMW</option>
           </select>
           <select className="dropdown">
-            <option>TUCSON</option>
+            <option>Tucson</option>
             <option>Corolla</option>
-            <option>X5</option>
+            <option>M5</option>
           </select>
         </div>
 
