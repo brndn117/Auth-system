@@ -1,9 +1,7 @@
 {
-<<<<<<< HEAD
   "name": "project",
-=======
   "name": "trust_website",
->>>>>>> ac1ae72943b836921c773cf729d691549acc54ca
+
   "version": "0.1.0",
   "private": true,
   "dependencies": {
