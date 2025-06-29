@@ -1,0 +1,54 @@
+.explore-page {
+  min-height: 100vh;
+  background: url('/public/Car-BlackW.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-title {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.explore-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+  padding: 40px;
+}
+
+.glass-card {
+  width: 80vw;
+  height: 80vh;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.arrow-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6px);
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+  padding: 10px 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.arrow-button.left {
+  left: 20px;
+}
+
+.arrow-button.right {
+  right: 20px;
+}
