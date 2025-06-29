@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+=======
+
+node_modules/
+build/
+.env
+.DS_Store
+
+>>>>>>> ac1ae72943b836921c773cf729d691549acc54ca

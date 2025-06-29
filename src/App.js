@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 // Path expects App.css to be directly in the 'src/' folder, alongside App.js
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
@@ -9,6 +10,13 @@ import HomePage from './Pages/HomePage';
 import ExplorePage from './Pages/ExplorePage';
 import LoginPage from './Pages/LoginPage';
 import SignUpPage from './Pages/SignUpPage';
+=======
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';       
+import ExplorePage from '../../src/Pages/ExplorePage';
+import LoginPage from './Pages/LoginPage'; 
+import SignUpPage from './Pages/SignUpPage'; 
+>>>>>>> ac1ae72943b836921c773cf729d691549acc54ca
 import SellingPage from './Pages/SellingPage';
 import BuyingPage from './Pages/BuyingPage';
 
@@ -21,6 +29,10 @@ function App() {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/selling" element={<SellingPage />} />
       <Route path="/buying" element={<BuyingPage />} />
+<<<<<<< HEAD
+=======
+     
+>>>>>>> ac1ae72943b836921c773cf729d691549acc54ca
     </Routes>
   );
 }
@@ -28,3 +40,7 @@ function App() {
 export default App;
 
 
+<<<<<<< HEAD
+=======
+// This code defines the main App component for a React application. It imports and uses Navbar, HeroSection, AboutSection, and Footer components to create a complete layout. The App component serves as the entry point for the application, rendering the navigation bar, hero section, about section, and footer in a structured manner. This modular approach enhances maintainability and readability of the code.
+>>>>>>> ac1ae72943b836921c773cf729d691549acc54ca
