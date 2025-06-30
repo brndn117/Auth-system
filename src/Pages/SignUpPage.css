@@ -1,219 +1,246 @@
 .signup-page {
-  font-family: 'Segoe UI', sans-serif;
-  background-image: url('../assets/jonathan-gallegos-5FGqfV6UjzI-unsplash.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-  /* Removed padding-top here as flexbox will handle vertical centering */
-  display: flex;
-  align-items: center; /* Vertically center the container */
-  justify-content: flex-end; /* Push the container to the right */
-  padding-right: 5%; /* Add some padding from the right edge */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('../assets/jonathan-gallegos-5FGqfV6UjzI-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* Vertically center the container */
+    justify-content: flex-end; /* Push the container to the right */
+    padding-right: 5%; /* Add some padding from the right edge */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    position: relative; /* Needed for positioning the Navbar if it's absolute */
 }
 
 /* === Form Container === */
 .signup-container {
-  background: rgba(255, 255, 255, 0.95); /* translucent white card */
-  max-width: 420px;
-  width: 90%; /* Allows it to be responsive on smaller screens */
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  text-align: left; /* Align text to the left for labels and inputs */
-  box-sizing: border-box; /* Ensure padding doesn't increase total width beyond max-width */
+    background: rgba(255, 255, 255, 0.95); /* translucent white card */
+    max-width: 420px;
+    width: 90%; /* Allows it to be responsive on smaller screens */
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    text-align: left; /* Align text to the left for labels and inputs */
+    box-sizing: border-box; /* Ensure padding doesn't increase total width beyond max-width */
 }
 
 /* === Title (Removed as per image, now just labels) === */
 /* If you decide to add a title back, you can use this:
 .signup-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #222;
-  text-align: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #222;
+    text-align: center;
 }
 */
 
-/* === Google Button === */
+/* === Google Button (if you decide to use it) === */
 .google-btn {
-  background-color: #4285f4;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 14px 22px;
-  font-size: 1rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-bottom: 25px; /* Add space below the Google button */
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 22px;
+    font-size: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-bottom: 25px;
 }
 
 .google-btn:hover {
-  background-color: #357ae8;
+    background-color: #357ae8;
 }
 
 .google-icon {
-  width: 22px;
-  height: 22px;
+    width: 22px;
+    height: 22px;
 }
 
-/* === Divider === */
+/* === Divider (if you decide to use it) === */
 .divider {
-  display: flex;
-  align-items: center;
-  margin: 25px 0;
-  font-weight: 500;
-  color: #666;
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    font-weight: 500;
+    color: #666;
 }
 
 .divider::before,
 .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background-color: #ddd;
-  margin: 0 12px;
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+    margin: 0 12px;
 }
 
 /* === Form Inputs === */
 .signup-label {
-  display: block; /* Make labels take up full width and stack */
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 8px; /* Space between label and input */
-  font-weight: 500;
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .signup-input {
-  width: 100%;
-  padding: 13px 16px;
-  margin-bottom: 22px; /* Space below each input */
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.3s ease;
-  box-sizing: border-box; /* Include padding and border in the element's total width */
+    width: 100%;
+    padding: 13px 16px;
+    margin-bottom: 22px; /* Space below each input, including the new phoneNumber input */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .signup-input:focus {
-  border-color: #007bff; /* Highlight border on focus */
+    border-color: #007bff;
 }
 
 /* === Terms and Conditions Checkbox === */
 .terms-checkbox {
-  display: flex;
-  align-items: center;
-  margin-bottom: 25px;
-  font-size: 0.9rem;
-  color: #555;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #555;
 }
 
 .terms-checkbox input[type="checkbox"] {
-  margin-right: 10px;
-  transform: scale(1.1); /* Slightly larger checkbox */
+    margin-right: 10px;
+    transform: scale(1.1);
 }
 
 /* === Sign Up Button === */
 .signup-btn {
-  background-color: #00c6ff; /* A vibrant blue for the sign-up button */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 14px 22px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  width: 100%;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  margin-top: 10px; /* Space above the button */
+    background-color: #00c6ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 22px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px; /* Space above the button */
 }
 
 .signup-btn:hover {
-  background-color: #00aaff;
+    background-color: #00aaff;
 }
 
 /* === Bottom Links (Already have an account? Log in) === */
 .bottom-links {
-  margin-top: 25px;
-  font-size: 0.9rem;
-  color: #555;
-  text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
 }
 
 .bottom-links a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 600;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .bottom-links a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* === Navbar styles (Assuming Navbar has its own styles, but adding basic alignment for the overall page) === */
+/* === Navbar styles === */
+/* Adjust .navbar-container to ensure it's not hidden by the signup-page flex alignment.
+   It's better if Navbar handles its own positioning, but if it's rendered directly
+   as a sibling to .signup-container within .signup-page, this ensures it's visible. */
 .navbar-container {
-  position: absolute; /* Position the navbar absolutely */
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 5%; /* Adjust padding as needed */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white; /* Example: Assuming light text on dark background */
-  z-index: 10; /* Ensure it's above other content */
+    position: absolute; /* Position the navbar absolutely within .signup-page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 10;
 }
 
 .navbar-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
 }
 
 .navbar-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 30px;
-  font-weight: 500;
-  transition: color 0.3s ease;
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #00c6ff; /* Highlight on hover */
+    color: #00c6ff;
 }
 
 .navbar-button {
-  background-color: transparent;
-  border: 2px solid white;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .navbar-button:hover {
-  background-color: white;
-  color: #00c6ff;
+    background-color: white;
+    color: #00c6ff;
 }
+
+/* === NEW: Styles for Feedback Messages === */
+.message {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    word-wrap: break-word; /* Ensure long messages wrap */
+}
+
+.message.success {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
 
 /* Adjustments for responsiveness */
 @media (max-width: 768px) {
-  .signup-page {
-    justify-content: center; /* Center the form on smaller screens */
-    padding-right: 0;
-  }
+    .signup-page {
+        justify-content: center; /* Center the form on smaller screens */
+        padding-right: 0;
+    }
 
-  .signup-container {
-    width: 95%; /* Wider on smaller screens */
-    padding: 30px 20px;
-  }
+    .signup-container {
+        width: 95%; /* Wider on smaller screens */
+        padding: 30px 20px;
+    }
 }
