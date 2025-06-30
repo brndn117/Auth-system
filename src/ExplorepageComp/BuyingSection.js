@@ -24,6 +24,7 @@ const BuyingSection = () => {
           </select>
         </div>
 
+
         <button className="search-button">
           🔍 Search
         </button>
