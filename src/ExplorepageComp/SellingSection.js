@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import this!
 import './SellingSection.css';
 
 const SellingSection = () => {
+  const navigate = useNavigate(); // ✅ Initialize it here
+
   return (
     <div className="selling-card">
       <div className="selling-text">
@@ -12,7 +15,12 @@ const SellingSection = () => {
           Remove any uncertainty and effortlessly sell your car through us.
           We assure security, convenience, and promptness throughout the entire experience.
         </p>
-        <button className="sell-button">Sell my car now</button>
+        <button 
+          onClick={() => navigate('/NPsell')} // ✅ Route corrected to match your App.js
+          className="sell-button"
+        >
+          Sell my car now
+        </button>
       </div>
 
       <div className="selling-image">
@@ -23,3 +31,4 @@ const SellingSection = () => {
 };
 
 export default SellingSection;
+

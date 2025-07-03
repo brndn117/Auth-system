@@ -6,13 +6,13 @@ const Navbar = () => {
 
   return (
     <nav style={styles.nav}>
-      <h2 style={{ ...styles.logo, cursor: 'pointer' }} onClick={() => navigate('/')}>TrueSite</h2>
-      {/* This div contains all your buttons */}
-      <div style={styles.buttonGroup}> {/* Added a style for this div */}
+      <h2 style={styles.logo} onClick={() => navigate('/')}>TrueSite</h2>
+
+      <div style={styles.buttonGroup}>
         <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
         <button style={styles.button} onClick={() => navigate('/signUp')}>Sign-Up</button>
         <button style={styles.button} onClick={() => navigate('/buying')}>Buying</button>
-        <button style={styles.button} onClick={() => navigate('/selling')}>Selling</button>
+        <button style={styles.button} onClick={() => navigate('/NPsell')}>Selling</button>
       </div>
     </nav>
   );
@@ -20,39 +20,33 @@ const Navbar = () => {
 
 const styles = {
   nav: {
-    display: 'flex',
-    // --- KEY CHANGE: Align all content to the start (left) ---
-    justifyContent: 'flex-start',
-    // --- Add a gap between the TrueSite logo and the button group ---
-    gap: '30px', // Adjust this value as needed for spacing between logo and buttons
-    
-    padding: '20px 40px',
-    backgroundColor: 'transparent',
-    color: 'White',
-    alignItems: 'center',
-
     position: 'fixed',
     top: 0,
     left: 0,
     width: '100%',
+    backgroundColor: 'black',
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '20px 40px',
     zIndex: 1000,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
   },
 
   logo: {
     margin: 0,
     fontSize: '1.8rem',
     fontWeight: '700',
+    cursor: 'pointer',
   },
-  
-  // --- NEW STYLE FOR THE DIV CONTAINING BUTTONS ---
+
   buttonGroup: {
-    display: 'flex', // Make this a flex container too, to manage internal button spacing
-    alignItems: 'center',
-    // gap: '10px', // If you want gap between buttons instead of marginLeft
+    display: 'flex',
+    gap: '10px',
   },
 
   button: {
-    marginLeft: '10px', // Keep this for spacing *between* buttons, or use gap on buttonGroup
     padding: '8px 16px',
     fontSize: '14px',
     backgroundColor: 'transparent',
@@ -62,8 +56,7 @@ const styles = {
     cursor: 'pointer',
     transition: 'all 0.3s ease',
   },
-  // As discussed, inline styles don't easily support pseudo-classes like :hover.
-  // For hover effects, consider moving styles to a separate CSS file.
 };
 
 export default Navbar;
+

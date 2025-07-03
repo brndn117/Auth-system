@@ -1,0 +1,57 @@
+.npSell-container {
+  width: 80%;
+  height: 50vh;
+  margin: 120px auto 0 auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  background-color: rgba(27, 26, 26, 0.263);
+  padding: 40px;
+}
+
+.npSell-heading {
+  font-size: 3rem;
+  color: white;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.highlight {
+  color: #00cfff; /* Light blue */
+}
+
+.npSell-search-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  justify-content: start;
+}
+
+.npSell-input {
+  padding: 16px;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  border: none;
+  width: 50%;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background-color: white;
+  color: #888;
+}
+
+.npSell-B {
+  padding: 16px 40px;
+  width: 50%;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #00f0ff;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}

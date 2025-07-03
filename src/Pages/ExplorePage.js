@@ -18,7 +18,8 @@ const ExplorePage = () => {
   };
 
   return (
-    <div className="explore-page">
+  <div className="explore-page">
+    
       <Navbar />
       <h1 className="explore-title">Explore TrueSite Features</h1>
 
@@ -28,8 +29,10 @@ const ExplorePage = () => {
           {cards[currentIndex]}
         </div>
         <button className="arrow-button right" onClick={() => handleNavigation('right')}>&rarr;</button>
-      </div>
+        </div>
+      
     </div>
+  
   );
 };
 
