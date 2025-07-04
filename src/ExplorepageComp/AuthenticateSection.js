@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AuthenticateSection.css';
 
 const AuthenticationSection = () => {
+  const [vin, setVin] = useState('');
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    //  attach VIN search logic here to link with backend 
-    navigate('/report'); // Navigate to the report page
+    const trimmedVin = vin.trim();
+    if (trimmedVin) {
+      navigate(`/report/${trimmedVin}`);
+    }
   };
 
   return (
@@ -17,7 +20,13 @@ const AuthenticationSection = () => {
       </h1>
 
       <div className="auth-search-row">
-        <input type="text" className="auth-input" placeholder="Enter VIN" />
+        <input
+          type="text"
+          className="auth-input"
+          placeholder="Enter VIN"
+          value={vin}
+          onChange={(e) => setVin(e.target.value)}
+        />
         <button className="auth-button" onClick={handleSearch}>Search</button>
       </div>
 
@@ -29,5 +38,6 @@ const AuthenticationSection = () => {
 };
 
 export default AuthenticationSection;
+
 
 // WBAAA1305H8251545

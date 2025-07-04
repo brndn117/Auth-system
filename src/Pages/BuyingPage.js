@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import carData from '../TestData/carData'; // Make sure path is correct
 import './BuyingPage.css';
 
+const carsPerPage = 6;
+
 const BuyingPage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(carData.length / carsPerPage);
+  const indexOfLastCar = currentPage * carsPerPage;
+  const indexOfFirstCar = indexOfLastCar - carsPerPage;
+  const currentCars = carData.slice(indexOfFirstCar, indexOfLastCar);
+
+  const goToPage = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -99,7 +114,7 @@ const BuyingPage = () => {
         </aside>
 
         <main className="car-grid">
-          {carData.map(car => (
+          {currentCars.map(car => (
             <div key={car.id} className="car-card">
               <img src={car.image} alt={`${car.make} ${car.model}`} className="car-image" />
               <div className="badge">{car.badge}</div>
@@ -110,6 +125,27 @@ const BuyingPage = () => {
               <p className="year-mileage">{car.year} • {car.mileage}</p>
             </div>
           ))}
+
+          {/* Pagination Controls */}
+          <div className="pagination">
+            <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>
+              ◀
+            </button>
+
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                className={currentPage === i + 1 ? 'active-page' : ''}
+                onClick={() => goToPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>
+              ▶
+            </button>
+          </div>
         </main>
       </div>
     </>
@@ -117,5 +153,7 @@ const BuyingPage = () => {
 };
 
 export default BuyingPage;
+
+
 
 // This code defines a BuyingPage component that renders a sidebar with various filters for buying cars and a grid of car listings.

@@ -24,7 +24,7 @@ function App() {
       <Route path="/selling" element={<SellingPage />} />
       <Route path="/buying" element={<BuyingPage />} />
       <Route path="/NPsell" element={<NPsell />} />
-      <Route path="/report" element={<ReportPage />} />
+      <Route path="/report/:vin" element={<ReportPage />} />
       {/* Add more routes as needed */}
     </Routes>
   );
