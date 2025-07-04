@@ -12,6 +12,7 @@ import SignUpPage from './Pages/SignUpPage';
 import SellingPage from './Pages/SellingPage';
 import BuyingPage from './Pages/BuyingPage';
 import NPsell from './Pages/NPsell';
+import ReportPage from './Pages/ReportPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/selling" element={<SellingPage />} />
       <Route path="/buying" element={<BuyingPage />} />
       <Route path="/NPsell" element={<NPsell />} />
+      <Route path="/report" element={<ReportPage />} />
       {/* Add more routes as needed */}
     </Routes>
   );
