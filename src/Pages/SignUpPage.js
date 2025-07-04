@@ -71,10 +71,10 @@ const SignUpPage = () => {
 
     return (
         <div className="signup-page">
-            <Navbar /> {/* Your Navbar component */}
+            <Navbar /> 
 
             <div className="signup-container">
-                {/* Wrap form elements in a <form> tag and attach onSubmit handler */}
+            <h2 className="signup-title">SIGN UP TO AN ACCOUNT</h2>
                 <form onSubmit={handleSignUp}>
                     {/* Display messages to the user */}
                     {message && <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</p>}
