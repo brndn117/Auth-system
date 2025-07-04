@@ -146,7 +146,7 @@ const carData = [
     make: 'Mazda',
     model: 'Demio',
     year: 2015,
-    price: 10000000,
+    price: 1000000,
     fuelType: 'Petrol',
     engine: '1.2 L',
     gearbox: 'Automatic',

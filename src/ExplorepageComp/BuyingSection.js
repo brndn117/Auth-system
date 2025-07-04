@@ -1,9 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 import './BuyingSection.css';
 
- 
-
 const BuyingSection = () => {
+  const navigate = useNavigate(); // ✅ Hook to navigate
+
+  const handleSearch = () => {
+    navigate('/buying'); // ✅ Route to the Buying Page
+  };
+
   return (
     <div className="buying-section">
       <div className="buying-left">
@@ -24,17 +29,17 @@ const BuyingSection = () => {
           </select>
         </div>
 
-
-        <button className="search-button">
+        <button className="search-button" onClick={handleSearch}>
           🔍 Search
         </button>
       </div>
 
       <div className="buying-right">
-        <img src= "/bmw-3-series-saloon.png" alt="Car" className="car-image" />
+        <img src="/bmw-3-series-saloon.png" alt="Car" className="car-image" />
       </div>
     </div>
   );
 };
 
 export default BuyingSection;
+
