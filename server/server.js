@@ -102,6 +102,40 @@ app.post('/api/login', async (req, res) => {
         res.status(500).json({ message: 'Server error during login.' });
     }
 });
+ // Update Buyer Details Route
+app.put('/api/buyer/:id', async (req, res) => {
+    const { id } = req.params;
+    const { fullName, phoneNumber, email } = req.body;
+
+    if (!fullName || !phoneNumber || !email) {
+        return res.status(400).json({ message: 'fullName, email, and phoneNumber are required.' });
+    }
+
+    try {
+        const query = 'UPDATE buyer SET name = ?, email = ?, phoneNumber = ? WHERE buyer_id = ?';
+        await db.promise().query(query, [fullName, email, phoneNumber, id]);
+
+        res.status(200).json({ message: 'Buyer updated successfully.' });
+    } catch (error) {
+        console.error('Error updating buyer:', error);
+        res.status(500).json({ message: 'Server error during update.' });
+    }
+});
+// Delete Buyer Route
+app.delete('/api/buyer/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const query = 'DELETE FROM buyer WHERE buyer_id = ?';
+        await db.promise().query(query, [id]);
+
+        res.status(200).json({ message: 'Buyer deleted successfully.' });
+    } catch (error) {
+        console.error('Error deleting buyer:', error);
+        res.status(500).json({ message: 'Server error during deletion.' });
+    }
+});
+
 
 // Start the server
 app.listen(port, () => {
