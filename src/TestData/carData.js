@@ -12,6 +12,11 @@ const carData = [
     gearbox: 'Automatic',
     mileage: '0 miles',
     discount: 8420,
+    doors: 5,
+    seats: 5,
+    color: 'White',
+    registration: 'MA70OXZ',
+    previousOwners: 1,
     badge: 'New in stock',
   },
   {

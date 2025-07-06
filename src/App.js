@@ -13,6 +13,7 @@ import SellingPage from './Pages/SellingPage';
 import BuyingPage from './Pages/BuyingPage';
 import NPsell from './Pages/NPsell';
 import ReportPage from './Pages/ReportPage';
+import VehicleDetailPage from './Pages/VehicleDetailPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/buying" element={<BuyingPage />} />
       <Route path="/NPsell" element={<NPsell />} />
       <Route path="/report/:vin" element={<ReportPage />} />
+      <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
       {/* Add more routes as needed */}
     </Routes>
   );

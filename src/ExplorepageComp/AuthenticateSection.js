@@ -38,6 +38,3 @@ const AuthenticationSection = () => {
 };
 
 export default AuthenticationSection;
-
-
-// WBAAA1305H8251545
