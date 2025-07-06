@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import carData from '../TestData/carData'; // Make sure path is correct
 import './BuyingPage.css';
@@ -7,6 +8,7 @@ const carsPerPage = 6;
 
 const BuyingPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const totalPages = Math.ceil(carData.length / carsPerPage);
   const indexOfLastCar = currentPage * carsPerPage;
@@ -115,7 +117,12 @@ const BuyingPage = () => {
 
         <main className="car-grid">
           {currentCars.map(car => (
-            <div key={car.id} className="car-card">
+            <div
+              key={car.id}
+              className="car-card"
+              onClick={() => navigate(`/vehicle/${car.id}`)}
+              style={{ cursor: 'pointer' }}
+            >
               <img src={car.image} alt={`${car.make} ${car.model}`} className="car-image" />
               <div className="badge">{car.badge}</div>
               <h4>{car.make} {car.model}</h4>
@@ -153,6 +160,7 @@ const BuyingPage = () => {
 };
 
 export default BuyingPage;
+
 
 
 
