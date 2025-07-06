@@ -6,36 +6,53 @@ const HeroSection = () => {
 
   return (
     <section style={styles.hero}>
-      <h1>Welcome to TrueSite</h1>
-      <p>Verify and buy second-hand vehicles with confidence and security.</p>
-      <button style={styles.cta} onClick={() => navigate('/explore')}>Start Exploring</button>
+      <div style={styles.content}>
+        <h1 style={styles.title}>Welcome to TrueSite</h1>
+        <p style={styles.subtitle}>Verify and buy second-hand vehicles with confidence and security.</p>
+        <button style={styles.cta} onClick={() => navigate('/explore')}>Start Exploring</button>
+      </div>
     </section>
   );
 };
 
 const styles = {
   hero: {
-    padding: '80px 20px',
+    padding: '100px 20px',
     textAlign: 'center',
+    background: 'rgba(0,0,0,0.5)',
+    backdropFilter: 'blur(6px)',
+    borderRadius: '20px',
+    margin: '40px auto',
+    maxWidth: '900px',
+    position: 'relative',
+    zIndex: 1,
+  },
+  content: {
     color: 'white',
-    backgroundColor: 'transparent',
   },
-
-  h1: {
-    fontSize: '100px', 
-    margin: '0 0 20px',
+  title: {
+    fontSize: '3rem',
+    marginBottom: '20px',
+    fontWeight: 'bold',
   },
-
-cta: {
-    marginTop: '20px',
-    padding: '12px 24px',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    fontSize: '16px',
+  subtitle: {
+    fontSize: '1.2rem',
+    marginBottom: '30px',
+    color: '#ccc',
+  },
+  cta: {
+    padding: '14px 30px',
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    color: '#000',
+    backgroundColor: '#00ecff',
     border: 'none',
-    borderRadius: '6px',
+    borderRadius: '25px',
     cursor: 'pointer',
-  }
+    boxShadow: '0 8px 20px rgba(0,236,255,0.3)',
+    transition: 'transform 0.3s ease',
+  },
 };
 
 export default HeroSection;
+

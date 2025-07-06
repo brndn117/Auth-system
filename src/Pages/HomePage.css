@@ -1,3 +1,6 @@
+
+
+
 body, html, #root {
   margin: 0;
   padding: 0;
@@ -5,9 +8,57 @@ body, html, #root {
 }
 
 .app-background {
-background-image: url('/public/Car-BlackW.jpg');
-background-size: cover;
-background-position: center;
-min-height: 100vh;
-color: white;
+  background-image: url('/public/Car-BlackW.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: white;
+}
+
+.home-section {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.home-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: cyan;
+}
+
+.home-section p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+.horizontal-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 250px;
+  color: white;
+  text-align: center;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card-glass img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.card-glass:hover {
+  transform: translateY(-5px);
 }
