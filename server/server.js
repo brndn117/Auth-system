@@ -13,7 +13,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1234',
+  password: 'Severin.10',
   database: 'project',
 });
 
@@ -105,14 +105,14 @@ app.post('/api/seller-signup', async (req, res) => {
   }
 
   try {
-    const [existing] = await db.promise().query('SELECT * FROM sellers WHERE email = ?', [email]);
+    const [existing] = await db.promise().query('SELECT * FROM seller WHERE email = ?', [email]);
     if (existing.length > 0) {
       return res.status(409).json({ message: 'Email already registered.' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.promise().query(
-      'INSERT INTO sellers (name, email, phoneNumber, password) VALUES (?, ?, ?, ?)',
+      'INSERT INTO seller (name, email, phoneNumber, password) VALUES (?, ?, ?, ?)',
       [name, email, phoneNumber, hashedPassword]
     );
 
@@ -133,7 +133,7 @@ app.post('/api/seller-login', async (req, res) => {
   }
 
   try {
-    const [sellers] = await db.promise().query('SELECT * FROM sellers WHERE email = ?', [email]);
+    const [sellers] = await db.promise().query('SELECT * FROM seller WHERE email = ?', [email]);
     if (sellers.length === 0) {
       return res.status(401).json({ message: 'Invalid credentials.' });
     }
@@ -157,6 +157,43 @@ app.post('/api/seller-login', async (req, res) => {
   } catch (err) {
     console.error('Seller login error:', err);
     res.status(500).json({ message: 'Server error during seller login.' });
+  }
+});
+// ------------------------------
+// SELLER PROFILE CRUD ROUTES
+// ------------------------------
+
+// Get all sellers
+app.get('/api/sellers', async (req, res) => {
+  try {
+    const [sellers] = await db.promise().query(
+      'SELECT sellerID, name, email, phoneNumber FROM seller'
+    );
+    res.status(200).json(sellers);
+  } catch (error) {
+    console.error('Error fetching sellers:', error);
+    res.status(500).json({ message: 'Server error while fetching sellers.' });
+  }
+});
+
+// Get a single seller by ID
+app.get('/api/seller/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [sellers] = await db.promise().query(
+      'SELECT sellerID, name, email, phoneNumber FROM seller WHERE sellerID = ?',
+      [id]
+    );
+
+    if (sellers.length === 0) {
+      return res.status(404).json({ message: 'Seller not found.' });
+    }
+
+    res.status(200).json(sellers[0]);
+  } catch (error) {
+    console.error('Error fetching seller:', error);
+    res.status(500).json({ message: 'Server error while fetching seller.' });
   }
 });
 
@@ -202,4 +239,3 @@ app.delete('/api/buyer/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
-
