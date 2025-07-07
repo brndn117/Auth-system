@@ -14,6 +14,9 @@ import BuyingPage from './Pages/BuyingPage';
 import NPsell from './Pages/NPsell';
 import ReportPage from './Pages/ReportPage';
 import VehicleDetailPage from './Pages/VehicleDetailPage';
+import SellerLoginPage from './Pages/SellerLoginPage';
+import SellerSignupPage from './Pages/SellerSignUpPage';
+import SellerDashboard from './Pages/SellerDashboard';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
       <Route path="/NPsell" element={<NPsell />} />
       <Route path="/report/:vin" element={<ReportPage />} />
       <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
+      <Route path="/seller-login" element={<SellerLoginPage />} />
+      <Route path="/seller-signup" element={<SellerSignupPage />} />
+      <Route path="/seller-dashboard" element={<SellerDashboard />} />
       {/* Add more routes as needed */}
     </Routes>
   );

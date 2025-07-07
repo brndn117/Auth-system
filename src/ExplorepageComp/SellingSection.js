@@ -16,7 +16,7 @@ const SellingSection = () => {
           We assure security, convenience, and promptness throughout the entire experience.
         </p>
         <button 
-          onClick={() => navigate('/NPsell')} // ✅ Route corrected to match your App.js
+          onClick={() => navigate('/seller-login')} 
           className="sell-button"
         >
           Sell my car now

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const { user, logout } = useAuth();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -21,17 +24,22 @@ const Navbar = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <nav style={styles.nav}>
       <h2 style={styles.logo} onClick={() => navigate('/')}>TrueSite</h2>
 
       <div style={styles.buttonGroup}>
-        <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
-        <button style={styles.button} onClick={() => navigate('/signUp')}>Sign-Up</button>
+        {/* 🟢 Show user's name at the beginning if logged in */}
+        {user && <span style={styles.welcomeText}>Hi, {user.fullName}</span>}
+
         <button style={styles.button} onClick={() => navigate('/buying')}>Buying</button>
         <button style={styles.button} onClick={() => navigate('/NPsell')}>Selling</button>
 
-        {/* Dropdown */}
         <div
           style={styles.dropdownContainer}
           onMouseEnter={() => setDropdownOpen(true)}
@@ -46,6 +54,16 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+        {/* Auth-based conditional rendering */}
+        {user ? (
+          <button style={styles.button} onClick={handleLogout}>Logout</button>
+        ) : (
+          <>
+            <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
+            <button style={styles.button} onClick={() => navigate('/signUp')}>Sign-Up</button>
+          </>
+        )}
       </div>
     </nav>
   );
@@ -67,22 +85,22 @@ const styles = {
     boxShadow: '0 2px 8px rgba(225, 215, 215, 0.1)',
     flexWrap: 'wrap',
   },
-
   logo: {
     margin: 0,
     fontSize: '1.8rem',
     fontWeight: '700',
     cursor: 'pointer',
   },
-
   buttonGroup: {
-    display: 'flex',
-    gap: '10px',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-end',
-    position: 'relative',
+     display: 'flex',
+  flexWrap: 'wrap',
+  gap: '10px',
+  justifyContent: 'flex-end',
+  alignItems: 'center',
+  position: 'relative',
+  maxWidth: '90%', // Prevent overflow
+  paddingRight: '10px',
   },
-
   button: {
     padding: '8px 16px',
     fontSize: '14px',
@@ -93,11 +111,9 @@ const styles = {
     cursor: 'pointer',
     transition: 'all 0.3s ease',
   },
-
   dropdownContainer: {
     position: 'relative',
   },
-
   dropdownMenu: {
     position: 'absolute',
     top: '100%',
@@ -108,7 +124,6 @@ const styles = {
     zIndex: 9999,
     minWidth: '150px',
   },
-
   dropdownItem: {
     padding: '10px 20px',
     background: 'transparent',
@@ -120,9 +135,17 @@ const styles = {
     fontSize: '14px',
     borderBottom: '1px solid rgba(255,255,255,0.1)',
   },
+  welcomeText: {
+    fontSize: '14px',
+    fontWeight: 'bold',
+    color: 'white',
+    marginRight: '10px',
+  },
 };
 
 export default Navbar;
+
+
 
 
 
