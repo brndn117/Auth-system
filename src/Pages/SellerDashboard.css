@@ -1,44 +1,75 @@
+/* Root Styling */
 .dashboard-container {
-  padding: 40px;
-  text-align: center;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
-h2 {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
-  color: #2c3e50;
-}
-
-.dashboard-actions {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 30px;
+  height: 100vh;
+  background-color: #0d0d0d;
+  color: #e0f7fa;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.card {
-  width: 280px;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+/* Sidebar Styling */
+.sidebar {
+  width: 240px;
+  background-color: #111;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+}
+
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: cyan;
+  margin-bottom: 1rem;
+}
+
+.profile h3 {
+  margin: 0.5rem 0 0.2rem;
+}
+
+.profile p {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: cyan;
+  font-size: 1rem;
+  text-align: left;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+.nav-links button:hover {
+  background-color: #222;
+  transform: translateX(5px);
+  border-left: 4px solid cyan;
 }
 
-.card h3 {
-  color: #2980b9;
-  margin-bottom: 10px;
+/* Main Content Styling */
+.main-content {
+  flex: 1;
+  padding: 3rem;
+  background-color: #1c1c1c;
 }
 
-.card p {
-  font-size: 0.95rem;
-  color: #555;
+.main-content h2 {
+  color: cyan;
+  margin-bottom: 1rem;
 }
+
+.main-content p {
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+

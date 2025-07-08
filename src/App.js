@@ -1,10 +1,7 @@
 import React from 'react';
-// Path expects App.css to be directly in the 'src/' folder, alongside App.js
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
-// These paths expect the 'Pages' folder to be directly in the 'src/' folder, alongside App.js
-// And the page files within that 'Pages' folder to be named exactly as shown (e.g., HomePage.js)
 import HomePage from './Pages/HomePage';
 import ExplorePage from './Pages/ExplorePage';
 import LoginPage from './Pages/LoginPage';
@@ -17,6 +14,8 @@ import VehicleDetailPage from './Pages/VehicleDetailPage';
 import SellerLoginPage from './Pages/SellerLoginPage';
 import SellerSignupPage from './Pages/SellerSignUpPage';
 import SellerDashboard from './Pages/SellerDashboard';
+import AuthenticationSection from './ExplorepageComp/AuthenticateSection';
+import PrivateRoute from './components/PrivateRoute'; // ✅ import this
 
 function App() {
   return (
@@ -32,8 +31,17 @@ function App() {
       <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
       <Route path="/seller-login" element={<SellerLoginPage />} />
       <Route path="/seller-signup" element={<SellerSignupPage />} />
-      <Route path="/seller-dashboard" element={<SellerDashboard />} />
-      {/* Add more routes as needed */}
+      <Route path="/authenticate" element={<AuthenticationSection />} />
+
+      {/* ✅ Protect the dashboard route */}
+      <Route
+        path="/seller-dashboard"
+        element={
+          <PrivateRoute>
+            <SellerDashboard />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }

@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import './AuthenticateSection.css';
 
 const AuthenticationSection = () => {
   const [vin, setVin] = useState('');
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  // Prefill VIN from URL if present
+  useEffect(() => {
+    const vinFromURL = searchParams.get('vin');
+    if (vinFromURL) {
+      setVin(vinFromURL);
+    }
+  }, [searchParams]);
 
   const handleSearch = () => {
     const trimmedVin = vin.trim();
@@ -38,3 +47,4 @@ const AuthenticationSection = () => {
 };
 
 export default AuthenticationSection;
+

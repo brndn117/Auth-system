@@ -26,6 +26,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
+    localStorage.removeItem('seller');
     navigate('/');
   };
 
@@ -34,11 +35,25 @@ const Navbar = () => {
       <h2 style={styles.logo} onClick={() => navigate('/')}>TrueSite</h2>
 
       <div style={styles.buttonGroup}>
-        {/* 🟢 Show user's name at the beginning if logged in */}
         {user && <span style={styles.welcomeText}>Hi, {user.fullName}</span>}
 
         <button style={styles.button} onClick={() => navigate('/buying')}>Buying</button>
-        <button style={styles.button} onClick={() => navigate('/NPsell')}>Selling</button>
+
+        {!user && (
+          <button
+            style={styles.button}
+            onClick={() => {
+              const seller = localStorage.getItem('seller');
+              if (seller) {
+                navigate('/seller-dashboard');
+              } else {
+                navigate('/seller-login');
+              }
+            }}
+          >
+            Selling
+          </button>
+        )}
 
         <div
           style={styles.dropdownContainer}
@@ -55,14 +70,13 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Auth-based conditional rendering */}
         {user ? (
           <button style={styles.button} onClick={handleLogout}>Logout</button>
         ) : (
-          <>
+          <div style={{ display: 'flex', gap: '10px' }}>
             <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
             <button style={styles.button} onClick={() => navigate('/signUp')}>Sign-Up</button>
-          </>
+          </div>
         )}
       </div>
     </nav>
@@ -83,7 +97,6 @@ const styles = {
     padding: '20px 20px',
     zIndex: 9999,
     boxShadow: '0 2px 8px rgba(225, 215, 215, 0.1)',
-    flexWrap: 'wrap',
   },
   logo: {
     margin: 0,
@@ -92,24 +105,22 @@ const styles = {
     cursor: 'pointer',
   },
   buttonGroup: {
-     display: 'flex',
-  flexWrap: 'wrap',
-  gap: '10px',
-  justifyContent: 'flex-end',
-  alignItems: 'center',
-  position: 'relative',
-  maxWidth: '90%', // Prevent overflow
-  paddingRight: '10px',
+    display: 'flex',
+    gap: '10px',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingRight: '10px',
   },
   button: {
-    padding: '8px 16px',
+    padding: '10px 20px',
     fontSize: '14px',
     backgroundColor: 'transparent',
     color: 'white',
     border: '2px solid white',
-    borderRadius: '25px',
+    borderRadius: '999px',
     cursor: 'pointer',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.3s ease-in-out',
+    letterSpacing: '0.5px',
   },
   dropdownContainer: {
     position: 'relative',
@@ -123,6 +134,7 @@ const styles = {
     overflow: 'hidden',
     zIndex: 9999,
     minWidth: '150px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
   },
   dropdownItem: {
     padding: '10px 20px',
@@ -143,8 +155,17 @@ const styles = {
   },
 };
 
-export default Navbar;
+// Hover styling via inline workaround using global CSS
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+  button:hover {
+    background-color: white !important;
+    color: black !important;
+    transform: scale(1.03);
+  }
+`, styleSheet.cssRules.length);
 
+export default Navbar;
 
 
 

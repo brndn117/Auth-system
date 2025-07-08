@@ -14,7 +14,7 @@ const ReportPage = () => {
   const [carData, setCarData] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/verify_vehicle/${vin}`)
+    axios.get(`http://127.0.0.1:5000/api/verify_vehicle/${vin}`)
       .then(response => {
         if (response.data.status === 'found') {
           setCarData(response.data.data);

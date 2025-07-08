@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import carData from '../TestData/carData';
 import './VehicleDetailPage.css';
 
 const VehicleDetailPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const car = carData.find(car => car.id === parseInt(id));
   const [mainImage, setMainImage] = useState(car?.images?.[0] || car?.image);
 
@@ -14,6 +15,10 @@ const VehicleDetailPage = () => {
   }
 
   const carImages = car.images || [car.image];
+
+  const handleAuthenticateClick = () => {
+    navigate(`/authenticate?vin=${encodeURIComponent(car.vin)}`);
+  };
 
   return (
     <>
@@ -52,7 +57,14 @@ const VehicleDetailPage = () => {
             <div><strong>Reg Number:</strong> {car.registration || 'N/A'}</div>
             <div><strong>Fuel:</strong> {car.fuelType}</div>
             <div><strong>Previous Owners:</strong> {car.previousOwners || 'N/A'}</div>
+            <div><strong>VIN Number:</strong> {car.vin || 'N/A'}</div>
           </div>
+        </div>
+
+        <div className="auth-section">
+          <button className="auth-button" onClick={handleAuthenticateClick}>
+            🔍 Authenticate This Vehicle Now
+          </button>
         </div>
       </div>
     </>

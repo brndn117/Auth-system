@@ -1,7 +1,7 @@
-// carData.js
 const carData = [
   {
     id: 1,
+    vin: 'KAA11112222KE',
     image: '/images/Q3.avif',
     make: 'Audi',
     model: 'Q3',
@@ -21,6 +21,7 @@ const carData = [
   },
   {
     id: 2,
+    vin: 'KAB33334444KE',
     image: '/images/Civic.avif',
     make: 'Honda',
     model: 'Civic',
@@ -33,8 +34,9 @@ const carData = [
     discount: 2005,
     badge: 'New (Pre-Reg)',
   },
-   {
+  {
     id: 3,
+    vin: 'KAC55556666KE',
     image: '/images/Corolla.avif',
     make: 'Toyota',
     model: 'Corolla',
@@ -47,8 +49,9 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-   {
+  {
     id: 4,
+    vin: 'KAD77778888KE',
     image: '/images/CX5.jpg',
     make: 'Mazda',
     model: 'CX-5',
@@ -61,8 +64,9 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-   {
+  {
     id: 5,
+    vin: 'KAE99990000KE',
     image: '/images/GR corolla.avif',
     make: 'Toyota',
     model: 'GR Corolla',
@@ -75,8 +79,9 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-   {
+  {
     id: 6,
+    vin: 'KAF11221122KE',
     image: '/images/LandCruiser.avif',
     make: 'Toyota',
     model: 'Land Cruiser',
@@ -89,8 +94,9 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-   {
+  {
     id: 7,
+    vin: 'KAG33443344KE',
     image: '/images/M5.avif',
     make: 'BMW',
     model: 'M5',
@@ -103,8 +109,9 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-   {
+  {
     id: 8,
+    vin: 'KAH55665566KE',
     image: '/images/Mazda2.avif',
     make: 'Mazda',
     model: '2',
@@ -117,36 +124,39 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-    {
-      id: 9,
-      image: '/images/Axio.jpg',
-      make: 'Toyota',
-      model: 'Axio',
-      year: 2017,
-      price: 1800000,
-      fuelType: 'Petrol',
-      engine: '1.5 L',
-      gearbox: 'Automatic',
-      mileage: '70000 km',
-      discount: 8420,
-      badge: 'New in stock',
-    },
-    {
-      id: 10,
-      image: '/images/C200A.avif',
-      make: 'Mercedes-Benz',
-      model: 'C200',
-      year: 2021,
-      price: 2000000,
-      fuelType: 'Petrol',
-      engine: '2.0 L',
-      gearbox: 'Automatic',
-      mileage: '20000 km',
-      discount: 8420,
-      badge: 'New in stock',
-    },
+  {
+    id: 9,
+    vin: 'KAD12345678KE', // ✅ Real VIN from your list
+    image: '/images/Axio.jpg',
+    make: 'Toyota',
+    model: 'Axio',
+    year: 2017,
+    price: 1800000,
+    fuelType: 'Petrol',
+    engine: '1.5 L',
+    gearbox: 'Automatic',
+    mileage: '70000 km',
+    discount: 8420,
+    badge: 'New in stock',
+  },
+  {
+    id: 10,
+    vin: 'KBQ33445566KE', // ✅ Real VIN from your list
+    image: '/images/C200A.avif',
+    make: 'Mercedes-Benz',
+    model: 'C200',
+    year: 2021,
+    price: 2000000,
+    fuelType: 'Petrol',
+    engine: '2.0 L',
+    gearbox: 'Automatic',
+    mileage: '20000 km',
+    discount: 8420,
+    badge: 'New in stock',
+  },
   {
     id: 11,
+    vin: 'KBX98765432KE', // ✅ Real VIN
     image: '/images/Demio.jpg',
     make: 'Mazda',
     model: 'Demio',
@@ -161,6 +171,7 @@ const carData = [
   },
   {
     id: 12,
+    vin: 'KCY99887766KE', // ✅ Real VIN
     image: '/images/fit.jpg',
     make: 'Honda',
     model: 'fit',
@@ -172,9 +183,10 @@ const carData = [
     mileage: '10000 km',
     discount: 8420,
     badge: 'New in stock',
-  }, 
+  },
   {
     id: 13,
+    vin: 'KCZ34567891KE', // ✅ Real VIN
     image: '/images/Forester.avif',
     make: 'Subaru',
     model: '  Forester',
@@ -189,6 +201,7 @@ const carData = [
   },
   {
     id: 14,
+    vin: 'KDA55667788KE', // ✅ Real VIN
     image: '/images/golfA.avif',
     make: 'Volkswagen',
     model: 'Golf',
@@ -203,6 +216,7 @@ const carData = [
   },
   {
     id: 15,
+    vin: 'KDG11223344KE', // ✅ Real VIN
     image: '/images/NoteA.jpg',
     make: 'Nissan',
     model: 'Note',
@@ -217,6 +231,7 @@ const carData = [
   },
   {
     id: 16,
+    vin: 'KAI77889900KE',
     image: '/images/sport.jpg',
     make: 'Suzuki',
     model: 'Swift Sport',
@@ -229,13 +244,8 @@ const carData = [
     discount: 8420,
     badge: 'New in stock',
   },
-
-
-  // Add more car objects as needed
-
-
-
 ];
 
 export default carData;
+
 // This file exports an array of car listings, each with details like make, model, year, price, and more.
