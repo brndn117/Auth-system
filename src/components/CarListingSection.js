@@ -1,8 +1,8 @@
 import React from 'react';
 
 const sampleCars = [
-  { title: 'Mercedes-Benz C200', image: '/images/C200.jpg', price: 'Ksh 2,500,000' },
-  { title: 'BMW M3 2019', image: '/images/M5.jpg', price: 'Ksh 10,000,000' },
+  { title: 'Mercedes-Benz C200', image: '/images/C200/C200.jpg', price: 'Ksh 2,500,000' },
+  { title: 'BMW M3 2019', image: '/images/m5/M5.avif', price: 'Ksh 10,000,000' },
   { title: 'Volkswagen Passat', image: '/images/ReportPageIm/Passat1.avif', price: 'Ksh 3,000,000' },
 ];
 

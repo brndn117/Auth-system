@@ -16,7 +16,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Severin.10',
+  password: '1234',
   database: 'project',
 });
 
@@ -251,12 +251,34 @@ app.get('/api/vehicles', async (req, res) => {
 });
 
 /* ---- ADMIN Update & Delete Buyers ---- */
+
+// ✅ GET Buyer by ID
+app.get('/api/admin/buyer/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [rows] = await db.promise().query(
+      'SELECT * FROM buyer WHERE buyerID = ?', [id]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Buyer not found' });
+    }
+
+    res.status(200).json(rows[0]);
+  } catch (error) {
+    console.error('❌ Error fetching buyer:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// ✅ PUT Update Buyer
 app.put('/api/admin/buyer/:id', async (req, res) => {
   const { id } = req.params;
   const { name, email, phoneNumber } = req.body;
 
   if (!name || !email || !phoneNumber) {
-    return res.status(400).json({ message: 'Name, email, and phone number are required.' });
+    return res.status(400).json({ message: 'All fields are required' });
   }
 
   try {
@@ -265,24 +287,27 @@ app.put('/api/admin/buyer/:id', async (req, res) => {
       [name, email, phoneNumber, id]
     );
 
-    res.status(200).json({ message: 'Buyer updated successfully.' });
+    res.status(200).json({ message: 'Buyer updated successfully' });
   } catch (error) {
-    console.error('Error updating buyer:', error);
-    res.status(500).json({ message: 'Server error during buyer update.' });
+    console.error('❌ Error updating buyer:', error);
+    res.status(500).json({ message: 'Server error during update' });
   }
 });
 
+// ✅ DELETE Buyer (optional)
 app.delete('/api/admin/buyer/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
     await db.promise().query('DELETE FROM buyer WHERE buyerID = ?', [id]);
-    res.status(200).json({ message: 'Buyer deleted successfully.' });
+    res.status(200).json({ message: 'Buyer deleted successfully' });
   } catch (error) {
-    console.error('Error deleting buyer:', error);
-    res.status(500).json({ message: 'Server error during buyer deletion.' });
+    console.error('❌ Error deleting buyer:', error);
+    res.status(500).json({ message: 'Server error during deletion' });
   }
 });
+
+
 /* ---- ADMIN Update & Delete Sellers ---- */
 app.put('/api/admin/seller/:id', async (req, res) => {
   const { id } = req.params;

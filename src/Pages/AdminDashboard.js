@@ -12,30 +12,38 @@ const AdminDashboard = () => {
   const admin = JSON.parse(localStorage.getItem('admin'));
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUsers = async () => {
       try {
-        const [buyersRes, sellersRes, vehiclesRes] = await Promise.all([
-          fetch('http://localhost:5001/api/buyer'),
-          fetch('http://localhost:5001/api/sellers'),
-          fetch('http://localhost:5001/api/vehicles'),
-        ]);
-
+        // Fetch buyers
+        const buyersRes = await fetch('http://localhost:5001/api/buyer');
         const buyersData = await buyersRes.json();
-        const sellersData = await sellersRes.json();
-        const vehiclesData = await vehiclesRes.json();
-
-        setBuyers(Array.isArray(buyersData) ? buyersData : []);
-        setSellers(Array.isArray(sellersData) ? sellersData : []);
-        setVehicles(Array.isArray(vehiclesData) ? vehiclesData : []);
-
+        setBuyers(buyersData);
       } catch (err) {
-        console.error('Error fetching data:', err);
+        console.error('Error fetching buyers:', err);
+      }
+
+      try {
+        // Fetch sellers
+        const sellersRes = await fetch('http://localhost:5001/api/sellers');
+        const sellersData = await sellersRes.json();
+        setSellers(sellersData);
+      } catch (err) {
+        console.error('Error fetching sellers:', err);
+      }
+
+      try {
+        // Fetch vehicles
+        const vehiclesRes = await fetch('http://localhost:5001/api/vehicles');
+        const vehiclesData = await vehiclesRes.json();
+        setVehicles(vehiclesData);
+      } catch (err) {
+        console.error('Error fetching vehicles:', err);
       }
 
       setLoading(false);
     };
 
-    fetchData();
+    fetchUsers();
   }, []);
 
   const handleLogout = () => {
@@ -43,7 +51,6 @@ const AdminDashboard = () => {
     navigate('/');
   };
 
-  // Delete handlers
   const deleteBuyer = async (id) => {
     if (window.confirm('Are you sure you want to delete this buyer?')) {
       await fetch(`http://localhost:5001/api/buyer/${id}`, { method: 'DELETE' });

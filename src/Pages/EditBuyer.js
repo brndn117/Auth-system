@@ -9,51 +9,71 @@ const EditBuyer = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch current buyer data on mount
+  // ✅ Fetch buyer data on mount
   useEffect(() => {
-    fetch(`http://localhost:5001/api/buyer/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch buyer data');
-        return res.json();
-      })
-      .then((data) => {
+    const fetchBuyer = async () => {
+      try {
+        const res = await fetch(`http://localhost:5001/api/admin/buyer/${id}`);
+
+        console.log('Fetching:', res.status, res.statusText); // Log status code
+
+        if (!res.ok) {
+          throw new Error(`Buyer not found (Status ${res.status})`);
+        }
+
+        const data = await res.json();
+
         setName(data.name);
         setEmail(data.email);
         setPhoneNumber(data.phoneNumber);
-      })
-      .catch((err) => setError(err.message));
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching buyer:', err.message);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchBuyer();
   }, [id]);
 
-  // Handle form submission to update buyer
+  // ✅ Submit updated buyer info
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const res = await fetch(`http://localhost:5001/api/admin/buyer/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ name, email, phoneNumber }),
       });
 
       if (!res.ok) {
         const errData = await res.json();
-        throw new Error(errData.message || 'Failed to update buyer');
+        throw new Error(errData.message || 'Update failed');
       }
 
       alert('Buyer updated successfully!');
-      navigate('/admin-dashboard'); // Go back to dashboard (which will fetch fresh data)
+      navigate('/admin-dashboard');
     } catch (err) {
+      console.error('Update error:', err.message);
       setError(err.message);
     }
   };
+
+  // ✅ UI
+  if (loading) return <div className="edit-page-container"><p>Loading buyer info...</p></div>;
 
   return (
     <div className="edit-page-container">
       <h1>Edit Buyer (ID: {id})</h1>
 
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error">Error: {error}</p>}
 
       <form className="edit-form" onSubmit={handleSubmit}>
         <label>Name</label>
