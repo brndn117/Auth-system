@@ -19,6 +19,10 @@ import PrivateRoute from './components/PrivateRoute';
 import AdminLogin from './Pages/AdminLogin';
 import AdminDashboard from './Pages/AdminDashboard';
 
+// ✅ NEW: Edit pages
+import EditBuyer from './Pages/EditBuyer';
+import EditSeller from './Pages/EditSeller';
+import EditVehicle from './Pages/EditVehicle';
 
 function App() {
   return (
@@ -47,6 +51,11 @@ function App() {
           </PrivateRoute>
         }
       />
+
+      {/* ✅ NEW: Admin Edit Routes */}
+      <Route path="/edit-buyer/:id" element={<EditBuyer />} />
+      <Route path="/edit-seller/:id" element={<EditSeller />} />
+      <Route path="/edit-vehicle/:id" element={<EditVehicle />} />
     </Routes>
   );
 }

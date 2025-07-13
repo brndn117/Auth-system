@@ -1,0 +1,75 @@
+.edit-page-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.edit-page-container h1 {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.edit-form label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.edit-form input, .edit-form select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.edit-form button {
+  padding: 12px;
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-form button:hover {
+  background-color: #1b5e20;
+}
+
+.edit-form .cancel-btn {
+  background-color: #d32f2f;
+}
+
+.edit-form .cancel-btn:hover {
+  background-color: #b71c1c;
+}
+
+.success-message, .error-message {
+  text-align: center;
+  font-size: 16px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success-message {
+  background-color: #c8e6c9;
+  color: #256029;
+}
+
+.error-message {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
