@@ -261,7 +261,7 @@ app.put('/api/admin/buyer/:id', async (req, res) => {
 
   try {
     await db.promise().query(
-      'UPDATE buyer SET name = ?, email = ?, phoneNumber = ? WHERE buyer_id = ?',
+      'UPDATE buyer SET name = ?, email = ?, phoneNumber = ? WHERE buyerID = ?',
       [name, email, phoneNumber, id]
     );
 
@@ -276,14 +276,13 @@ app.delete('/api/admin/buyer/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    await db.promise().query('DELETE FROM buyer WHERE buyer_id = ?', [id]);
+    await db.promise().query('DELETE FROM buyer WHERE buyerID = ?', [id]);
     res.status(200).json({ message: 'Buyer deleted successfully.' });
   } catch (error) {
     console.error('Error deleting buyer:', error);
     res.status(500).json({ message: 'Server error during buyer deletion.' });
   }
 });
-
 /* ---- ADMIN Update & Delete Sellers ---- */
 app.put('/api/admin/seller/:id', async (req, res) => {
   const { id } = req.params;
