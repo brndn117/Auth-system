@@ -128,7 +128,7 @@ const BuyingPage = () => {
               <h4>{car.make} {car.model}</h4>
               <p>{car.gearbox} • {car.fuelType} • {car.engine}</p>
               <p className="price">Ksh{car.price.toLocaleString()}</p>
-              <p className="discount">Saving £{car.discount.toLocaleString()} off RRP</p>
+              <p className="discount">Saving ksh{car.discount.toLocaleString()} off SaveCar</p>
               <p className="year-mileage">{car.year} • {car.mileage}</p>
             </div>
           ))}

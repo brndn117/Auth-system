@@ -25,6 +25,8 @@ db.connect((err) => {
   }
 });
 
+
+
 // ------------------------------
 // ADMIN LOGIN
 // ------------------------------
@@ -62,6 +64,9 @@ app.post('/api/adminlogin', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+
+
 
 
 // ------------------------------
@@ -251,6 +256,17 @@ app.get('/api/buyer', async (req, res) => {
   }
 });
 
+// GET all vehicle listings (for admin)
+app.get('/api/vehicles', async (req, res) => {
+  try {
+    const [vehicles] = await db.promise().query('SELECT * FROM listedvehicles');
+    res.status(200).json(vehicles);
+  } catch (err) {
+    console.error('Error fetching vehicle listings:', err);
+    res.status(500).json({ message: 'Server error fetching vehicle listings.' });
+  }
+});
+
 // ------------------------------
 // BUYER PROFILE UPDATE / DELETE
 // ------------------------------
@@ -286,6 +302,9 @@ app.delete('/api/buyer/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error during deletion.' });
   }
 });
+
+
+
 
 // ------------------------------
 // SERVER START
