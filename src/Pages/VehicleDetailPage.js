@@ -23,6 +23,7 @@ const VehicleDetailPage = () => {
   return (
     <>
       <Navbar />
+    
       <div className="vehicle-page">
         <div className="vehicle-images">
           <div className="thumbnail-column">
@@ -67,9 +68,11 @@ const VehicleDetailPage = () => {
           </button>
         </div>
       </div>
+    
     </>
   );
 };
+
 
 export default VehicleDetailPage;
 

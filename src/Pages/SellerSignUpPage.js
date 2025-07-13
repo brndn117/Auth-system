@@ -17,7 +17,7 @@ const SellerSignupPage = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/seller-signup', {
+      const res = await fetch('http://localhost:5001/api/seller-signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, phoneNumber, password })

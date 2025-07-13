@@ -7,6 +7,7 @@ import CarListingSection from '../../src/components/CarListingSection';
 import ContactSection from '../../src/components/ContactSection';
 import FAQSection from '../../src/components/FAQSection';
 import Footer from '../../src/components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const sampleReviews = [
   { name: 'Jane W.', review: 'Absolutely trustworthy service. Car arrived in great condition!' },
@@ -15,6 +16,8 @@ const sampleReviews = [
 ];
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="app-background">
       <Navbar />
@@ -44,12 +47,26 @@ const HomePage = () => {
       {/* Contact Section */}
       <ContactSection />
 
+      {/* Admin Dashboard Link */}
+      <div style={{ textAlign: 'center', padding: '30px 0' }}>
+        <p style={{ fontSize: '1rem', color: 'white' }}>
+          System Administrator?{' '}
+          <span
+            style={{ color: '#00cfff', cursor: 'pointer', fontWeight: 'bold', textDecoration: 'underline' }}
+            onClick={() => navigate('/admin-login')}
+          >
+            Go to Admin Dashboard
+          </span>
+        </p>
+      </div>
+
       <Footer />
     </div>
   );
 };
 
 export default HomePage;
+
 
 
 

@@ -9,7 +9,7 @@ const port = 5001;
 app.use(cors());
 app.use(express.json());
 
-// --- MySQL Connection ---
+// MySQL connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -19,11 +19,50 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error('Error connecting to MySQL database:', err);
-    return;
+    console.error('MySQL Connection Error:', err);
+  } else {
+    console.log('Connected to MySQL database: project');
   }
-  console.log('Connected to MySQL database: project');
 });
+
+// ------------------------------
+// ADMIN LOGIN
+// ------------------------------
+app.post('/api/adminlogin', async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required.' });
+  }
+
+  try {
+    const [rows] = await db.promise().query('SELECT * FROM administrator WHERE email = ?', [email]);
+
+    if (rows.length === 0 || rows[0].password !== password) {
+      return res.status(401).json({ message: 'Invalid credentials.' });
+    }
+
+    const admin = rows[0];
+
+    res.status(200).json({
+      message: 'Login successful!',
+      user: {
+        id: admin.adminID,
+        name: admin.name,
+        email: admin.email,
+      },
+    });
+  } catch (error) {
+    console.error('Admin login error:', error);
+    res.status(500).json({ message: 'Server error during login.' });
+  }
+});
+
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+
 
 // ------------------------------
 // BUYER AUTH ROUTES
@@ -159,6 +198,7 @@ app.post('/api/seller-login', async (req, res) => {
     res.status(500).json({ message: 'Server error during seller login.' });
   }
 });
+
 // ------------------------------
 // SELLER PROFILE CRUD ROUTES
 // ------------------------------
@@ -194,6 +234,20 @@ app.get('/api/seller/:id', async (req, res) => {
   } catch (error) {
     console.error('Error fetching seller:', error);
     res.status(500).json({ message: 'Server error while fetching seller.' });
+  }
+});
+
+// ADMIN: Get All Buyers
+// ------------------------------
+app.get('/api/buyer', async (req, res) => {
+  try {
+    const [buyer] = await db.promise().query(
+      'SELECT buyerID, name, email, phoneNumber FROM buyer'
+    );
+    res.status(200).json(buyer);
+  } catch (err) {
+    console.error('Error fetching buyers:', err);
+    res.status(500).json({ message: 'Server error while fetching buyers.' });
   }
 });
 

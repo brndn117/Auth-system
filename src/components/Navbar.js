@@ -35,7 +35,12 @@ const Navbar = () => {
       <h2 style={styles.logo} onClick={() => navigate('/')}>TrueSite</h2>
 
       <div style={styles.buttonGroup}>
-        {user && <span style={styles.welcomeText}>Hi, {user.fullName}</span>}
+        {user && (
+          <div style={styles.welcomeContainer}>
+            <span style={styles.welcomeText}>Hi,</span>
+            <span style={styles.userName}>{user.name}</span>
+          </div>
+        )}
 
         <button style={styles.button} onClick={() => navigate('/buying')}>Buying</button>
 
@@ -96,13 +101,14 @@ const styles = {
     alignItems: 'center',
     padding: '20px 20px',
     zIndex: 9999,
-    boxShadow: '0 2px 8px rgba(225, 215, 215, 0.1)',
+    boxShadow: '0 2px 8px rgba(255, 255, 255, 0.05)',
   },
   logo: {
     margin: 0,
     fontSize: '1.8rem',
     fontWeight: '700',
     cursor: 'pointer',
+    color: '#00e5ff',
   },
   buttonGroup: {
     display: 'flex',
@@ -147,15 +153,26 @@ const styles = {
     fontSize: '14px',
     borderBottom: '1px solid rgba(255,255,255,0.1)',
   },
-  welcomeText: {
-    fontSize: '14px',
+  welcomeContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    backgroundColor: '#111',
+    padding: '6px 16px',
+    borderRadius: '999px',
+    fontSize: '15px',
     fontWeight: 'bold',
-    color: 'white',
-    marginRight: '10px',
+    color: '#00e5ff',
+  },
+  welcomeText: {
+    color: '#aaa',
+  },
+  userName: {
+    color: '#00e5ff',
   },
 };
 
-// Hover styling via inline workaround using global CSS
+// Global hover styling workaround for inline styles
 const styleSheet = document.styleSheets[0];
 styleSheet.insertRule(`
   button:hover {
@@ -166,6 +183,7 @@ styleSheet.insertRule(`
 `, styleSheet.cssRules.length);
 
 export default Navbar;
+
 
 
 

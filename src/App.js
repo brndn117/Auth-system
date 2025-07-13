@@ -15,7 +15,10 @@ import SellerLoginPage from './Pages/SellerLoginPage';
 import SellerSignupPage from './Pages/SellerSignUpPage';
 import SellerDashboard from './Pages/SellerDashboard';
 import AuthenticationSection from './ExplorepageComp/AuthenticateSection';
-import PrivateRoute from './components/PrivateRoute'; // ✅ import this
+import PrivateRoute from './components/PrivateRoute';
+import AdminLogin from './Pages/AdminLogin';
+import AdminDashboard from './Pages/AdminDashboard';
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
       <Route path="/seller-login" element={<SellerLoginPage />} />
       <Route path="/seller-signup" element={<SellerSignupPage />} />
       <Route path="/authenticate" element={<AuthenticationSection />} />
+      <Route path='/admin-login' element={<AdminLogin />} />
+      <Route path='/admin-dashboard' element={<AdminDashboard />} />
 
       {/* ✅ Protect the dashboard route */}
       <Route
