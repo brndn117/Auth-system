@@ -1,11 +1,14 @@
+// Required packages
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 
+// Initialize express app
 const app = express();
 const port = 5001;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -13,7 +16,7 @@ app.use(express.json());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1234',
+  password: 'Severin.10',
   database: 'project',
 });
 
@@ -25,11 +28,9 @@ db.connect((err) => {
   }
 });
 
-
-
-// ------------------------------
-// ADMIN LOGIN
-// ------------------------------
+/* ------------------------------
+   ADMIN LOGIN
+-------------------------------- */
 app.post('/api/adminlogin', async (req, res) => {
   const { email, password } = req.body;
 
@@ -60,20 +61,9 @@ app.post('/api/adminlogin', async (req, res) => {
   }
 });
 
-// Start server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
-
-
-
-
-
-// ------------------------------
-// BUYER AUTH ROUTES
-// ------------------------------
-
-// Buyer Sign-Up
+/* ------------------------------
+   BUYER SIGNUP & LOGIN
+-------------------------------- */
 app.post('/api/signup', async (req, res) => {
   const { fullName, email, phoneNumber, password } = req.body;
 
@@ -100,7 +90,6 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// Buyer Login
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -136,11 +125,9 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// ------------------------------
-// SELLER AUTH ROUTES (for `sellers` table)
-// ------------------------------
-
-// Seller Sign-Up
+/* ------------------------------
+   SELLER SIGNUP & LOGIN
+-------------------------------- */
 app.post('/api/seller-signup', async (req, res) => {
   const { name, email, phoneNumber, password } = req.body;
 
@@ -163,12 +150,10 @@ app.post('/api/seller-signup', async (req, res) => {
     res.status(201).json({ message: 'Seller registered successfully.' });
   } catch (err) {
     console.error('Seller signup error:', err.message);
-    if (err.sqlMessage) console.error('SQL error:', err.sqlMessage);
     res.status(500).json({ message: 'Server error during seller signup.' });
   }
 });
 
-// Seller Login
 app.post('/api/seller-login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -204,9 +189,21 @@ app.post('/api/seller-login', async (req, res) => {
   }
 });
 
-// ------------------------------
-// SELLER PROFILE CRUD ROUTES
-// ------------------------------
+/* ------------------------------
+   ADMIN CRUD ROUTES
+-------------------------------- */
+// Get all buyers
+app.get('/api/buyer', async (req, res) => {
+  try {
+    const [buyer] = await db.promise().query(
+      'SELECT buyerID, name, email, phoneNumber FROM buyer'
+    );
+    res.status(200).json(buyer);
+  } catch (err) {
+    console.error('Error fetching buyers:', err);
+    res.status(500).json({ message: 'Server error while fetching buyers.' });
+  }
+});
 
 // Get all sellers
 app.get('/api/sellers', async (req, res) => {
@@ -242,21 +239,7 @@ app.get('/api/seller/:id', async (req, res) => {
   }
 });
 
-// ADMIN: Get All Buyers
-// ------------------------------
-app.get('/api/buyer', async (req, res) => {
-  try {
-    const [buyer] = await db.promise().query(
-      'SELECT buyerID, name, email, phoneNumber FROM buyer'
-    );
-    res.status(200).json(buyer);
-  } catch (err) {
-    console.error('Error fetching buyers:', err);
-    res.status(500).json({ message: 'Server error while fetching buyers.' });
-  }
-});
-
-// GET all vehicle listings (for admin)
+// Get all vehicle listings
 app.get('/api/vehicles', async (req, res) => {
   try {
     const [vehicles] = await db.promise().query('SELECT * FROM listedvehicles');
@@ -267,48 +250,90 @@ app.get('/api/vehicles', async (req, res) => {
   }
 });
 
-// ------------------------------
-// BUYER PROFILE UPDATE / DELETE
-// ------------------------------
-app.put('/api/buyer/:id', async (req, res) => {
+/* ---- ADMIN Update & Delete Buyers ---- */
+app.put('/api/admin/buyer/:id', async (req, res) => {
   const { id } = req.params;
-  const { fullName, phoneNumber, email } = req.body;
+  const { name, email, phoneNumber } = req.body;
 
-  if (!fullName || !phoneNumber || !email) {
-    return res.status(400).json({ message: 'fullName, email, and phoneNumber are required.' });
+  if (!name || !email || !phoneNumber) {
+    return res.status(400).json({ message: 'Name, email, and phone number are required.' });
   }
 
   try {
-    const query = 'UPDATE buyer SET name = ?, email = ?, phoneNumber = ? WHERE buyer_id = ?';
-    await db.promise().query(query, [fullName, email, phoneNumber, id]);
+    await db.promise().query(
+      'UPDATE buyer SET name = ?, email = ?, phoneNumber = ? WHERE buyer_id = ?',
+      [name, email, phoneNumber, id]
+    );
 
     res.status(200).json({ message: 'Buyer updated successfully.' });
   } catch (error) {
     console.error('Error updating buyer:', error);
-    res.status(500).json({ message: 'Server error during update.' });
+    res.status(500).json({ message: 'Server error during buyer update.' });
   }
 });
 
-app.delete('/api/buyer/:id', async (req, res) => {
+app.delete('/api/admin/buyer/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const query = 'DELETE FROM buyer WHERE buyer_id = ?';
-    await db.promise().query(query, [id]);
-
+    await db.promise().query('DELETE FROM buyer WHERE buyer_id = ?', [id]);
     res.status(200).json({ message: 'Buyer deleted successfully.' });
   } catch (error) {
     console.error('Error deleting buyer:', error);
-    res.status(500).json({ message: 'Server error during deletion.' });
+    res.status(500).json({ message: 'Server error during buyer deletion.' });
   }
 });
 
+/* ---- ADMIN Update & Delete Sellers ---- */
+app.put('/api/admin/seller/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, email, phoneNumber } = req.body;
 
+  if (!name || !email || !phoneNumber) {
+    return res.status(400).json({ message: 'Name, email, and phone number are required.' });
+  }
 
+  try {
+    await db.promise().query(
+      'UPDATE seller SET name = ?, email = ?, phoneNumber = ? WHERE sellerID = ?',
+      [name, email, phoneNumber, id]
+    );
 
-// ------------------------------
-// SERVER START
-// ------------------------------
+    res.status(200).json({ message: 'Seller updated successfully.' });
+  } catch (error) {
+    console.error('Error updating seller:', error);
+    res.status(500).json({ message: 'Server error during seller update.' });
+  }
+});
+
+app.delete('/api/admin/seller/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.promise().query('DELETE FROM seller WHERE sellerID = ?', [id]);
+    res.status(200).json({ message: 'Seller deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting seller:', error);
+    res.status(500).json({ message: 'Server error during seller deletion.' });
+  }
+});
+
+/* ---- ADMIN Delete Vehicle Listing ---- */
+app.delete('/api/admin/vehicle/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.promise().query('DELETE FROM listedvehicles WHERE vehicleID = ?', [id]);
+    res.status(200).json({ message: 'Vehicle listing deleted successfully.' });
+  } catch (error) {
+    console.error('Error deleting vehicle listing:', error);
+    res.status(500).json({ message: 'Server error during vehicle deletion.' });
+  }
+});
+
+/* ------------------------------
+   SERVER START
+-------------------------------- */
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
